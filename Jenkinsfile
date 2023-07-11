@@ -18,6 +18,7 @@ pipeline {
                 cd .. 
                 """
             }
+        }
         stage('Push Container'){
             steps {
                 echo "WorkSpace is $WORKSPACE"
@@ -31,7 +32,6 @@ pipeline {
                     }
                 }
             }
-        }
         }
     }
 }
