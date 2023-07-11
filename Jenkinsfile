@@ -25,7 +25,7 @@ pipeline {
                 dir("$WORKSPACE/azure-vote"){
                     script{
                            withCredentials([string(credentialsId: 'dockerhubpwd', variable: 'dockerhubpwd')]) {
-                            sh 'docker login -u javatechie -p ${dockerhubpwd}'
+                            sh 'docker login -u narasimharao12 -p ${dockerhubpwd}'
                            }
                            sh 'docker push narasimharao12/jenkins-pipeline' 
                         }
