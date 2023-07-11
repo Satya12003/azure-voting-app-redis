@@ -13,7 +13,7 @@ pipeline {
                 sh"""
                 cd azure-vote/
                 docker images -a
-                docker build -t jenkins-pipeline .
+                docker build -t narasimharao12/jenkins-pipeline .
                 docker images -a
                 cd .. 
                 """
@@ -24,10 +24,10 @@ pipeline {
                 echo "WorkSpace is $WORKSPACE"
                 dir("$WORKSPACE/azure-vote"){
                     script{
-                        docker.withRegistry('https://hub.docker.com/','DockerHub'){
-                            def image = docker.build('narasimharao12/votingapp:v1.0')
-                            image.push()
-                            
+                           withCredentials([string(credentialsId: 'dockerhubpwd', variable: 'dockerhubpwd')]) {
+                            sh 'docker login -u javatechie -p ${dockerhubpwd}'
+                           }
+                           sh 'docker push narasimharao12/jenkins-pipeline' 
                         }
                     }
                 }
