@@ -26,6 +26,7 @@ pipeline {
                         docker.withRegistry('https://index.docker.io/v1/','DockerHub'){
                             def image = docker.build('narasimharao12/votingapp:v1.0')
                             image.push()
+                            
                         }
                     }
                 }
